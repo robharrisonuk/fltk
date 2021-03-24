@@ -180,7 +180,11 @@ static void set_selection_color(uchar r, uchar g, uchar b)
 }
 
 
-// MacOS X currently supports two color schemes - Blue and Graphite.
+// macOS supports two basic color schemes - Light and Dark - with accent and
+// highlight colors.  Older versions limited the accent colors to Blue and
+// Graphite but now you can pick from a rainbow of colors plus the old Graphite
+// gray.
+//
 // Since we aren't emulating the Aqua interface (even if Apple would
 // let us), we use some defaults that are similar to both.  The
 // Fl::scheme("plastic") color/box scheme provides a usable Aqua-like

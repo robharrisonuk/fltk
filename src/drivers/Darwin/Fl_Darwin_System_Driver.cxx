@@ -419,3 +419,10 @@ Fl_Pixmap *Fl_Darwin_System_Driver::tree_closepixmap() {
 int Fl_Darwin_System_Driver::tree_connector_style() {
   return FL_TREE_CONNECTOR_NONE;
 }
+
+Fl_Dynamic_Color Fl_Darwin_System_Driver::dynamic_color() {
+  // TODO: Implement using NSApp.appearance property...
+  // https://developer.apple.com/documentation/appkit/nsappearancecustomization/choosing_a_specific_appearance_for_your_macos_app
+
+  return FL_DYNAMIC_COLOR_LIGHT;
+}

@@ -84,6 +84,7 @@ public:
   virtual const char *alt_name();
   virtual const char *control_name();
   virtual Fl_Sys_Menu_Bar_Driver *sys_menu_bar_driver();
+  virtual Fl_Dynamic_Color dynamic_color();
 };
 
 #endif // FL_DARWIN_SYSTEM_DRIVER_H
