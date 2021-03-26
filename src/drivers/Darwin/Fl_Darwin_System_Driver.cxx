@@ -105,7 +105,7 @@ Fl_Darwin_System_Driver::Fl_Darwin_System_Driver() : Fl_Posix_System_Driver() {
   key_table = darwin_key_table;
   key_table_size = sizeof(darwin_key_table)/sizeof(*darwin_key_table);
 
-  dynamic_color_ = FL_DYNAMIC_COLOR_DARK;
+  dynamic_color_ = FL_DYNAMIC_COLOR_LIGHT;
 }
 
 int Fl_Darwin_System_Driver::single_arg(const char *arg) {

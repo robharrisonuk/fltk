@@ -195,19 +195,19 @@ void Fl_Cocoa_Screen_Driver::get_system_colors()
 
   Fl_Dynamic_Color mode = Fl::dynamic_color();
 
-  if (!bg2_set) {
+  if (!bg2_set || mode != FL_DYNAMIC_COLOR_OFF) {
     if (mode == FL_DYNAMIC_COLOR_DARK)
       Fl::background2(23, 23, 23);
     else
       Fl::background2(0xff, 0xff, 0xff);
   }
-  if (!fg_set) {
+  if (!fg_set || mode != FL_DYNAMIC_COLOR_OFF) {
     if (mode == FL_DYNAMIC_COLOR_DARK)
       Fl::foreground(223, 223, 223);
     else
       Fl::foreground(0, 0, 0);
   }
-  if (!bg_set) {
+  if (!bg_set || mode != FL_DYNAMIC_COLOR_OFF) {
     if (mode == FL_DYNAMIC_COLOR_DARK)
       Fl::background(50, 50, 50);
     else

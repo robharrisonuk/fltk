@@ -107,20 +107,24 @@ void Fl::get_system_colors()
 }
 
 #ifndef FL_DOXYGEN
-Fl_Dynamic_Color Fl::dynamic_color_ = FL_DYNAMIC_COLOR_AUTO;
+Fl_Dynamic_Color Fl::dynamic_color_ = FL_DYNAMIC_COLOR_OFF;
 #endif // !FL_DOXYGEN
 
 void Fl::dynamic_color(Fl_Dynamic_Color mode)
 {
-  Fl::dynamic_color_ = mode;
+  dynamic_color_ = mode;
 }
 
 Fl_Dynamic_Color Fl::dynamic_color()
 {
-  if (Fl::dynamic_color_ == FL_DYNAMIC_COLOR_AUTO)
+  // TODO: Remove this
+  if (getenv("FL_DYNAMIC_COLOR") && dynamic_color_ == FL_DYNAMIC_COLOR_OFF)
+    dynamic_color_ = FL_DYNAMIC_COLOR_AUTO;
+
+  if (dynamic_color_ == FL_DYNAMIC_COLOR_AUTO)
     return Fl::system_driver()->dynamic_color();
   else
-    return Fl::dynamic_color_;
+    return dynamic_color_;
 }
 
 

@@ -2284,13 +2284,27 @@ static FLTextInputContext* fltextinputcontext_instance = nil;
 {
   // Check to see whether the system appearance has changed...
   if (Fl::dynamic_color_ == FL_DYNAMIC_COLOR_AUTO) {
+    Fl_Dynamic_Color mode = FL_DYNAMIC_COLOR_LIGHT;
+
+    if (@available(macOS 10.14, *)) {
+      NSAppearanceName temp = [self.effectiveAppearance bestMatchFromAppearancesWithNames:@[
+	  NSAppearanceNameAqua,
+	  NSAppearanceNameDarkAqua
+      ]];
+
+      if ([temp isEqualToString:NSAppearanceNameDarkAqua])
+        mode = FL_DYNAMIC_COLOR_DARK;
+    }
+
     Fl_Darwin_System_Driver *s = (Fl_Darwin_System_Driver *)Fl::system_driver();
-    NSLog(@"appearance=%@", NSApp.appearance);
-    Fl_Dynamic_Color mode = [NSApp.appearance.name isEqualTo:NSAppearanceNameAqua] ? FL_DYNAMIC_COLOR_LIGHT : FL_DYNAMIC_COLOR_DARK;
-    printf("New mode=%d\n", mode);
     if (s->dynamic_color() != mode) {
+      // Change the color mode and force all windows to redraw...
       s->dynamic_color(mode);
       Fl::get_system_colors();
+
+      Fl_Window *window;
+      for (window = Fl::first_window(); window; window = Fl::next_window(window))
+        window->redraw();
     }
   }
 
