@@ -104,6 +104,8 @@ Fl_Darwin_System_Driver::Fl_Darwin_System_Driver() : Fl_Posix_System_Driver() {
   // initialize key table
   key_table = darwin_key_table;
   key_table_size = sizeof(darwin_key_table)/sizeof(*darwin_key_table);
+
+  dynamic_color_ = FL_DYNAMIC_COLOR_DARK;
 }
 
 int Fl_Darwin_System_Driver::single_arg(const char *arg) {
@@ -421,8 +423,5 @@ int Fl_Darwin_System_Driver::tree_connector_style() {
 }
 
 Fl_Dynamic_Color Fl_Darwin_System_Driver::dynamic_color() {
-  // TODO: Implement using NSApp.appearance property...
-  // https://developer.apple.com/documentation/appkit/nsappearancecustomization/choosing_a_specific_appearance_for_your_macos_app
-
-  return FL_DYNAMIC_COLOR_LIGHT;
+  return dynamic_color_;
 }

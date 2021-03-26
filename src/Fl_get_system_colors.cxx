@@ -107,7 +107,7 @@ void Fl::get_system_colors()
 }
 
 #ifndef FL_DOXYGEN
-Fl_Dynamic_Color Fl::dynamic_color_ = FL_DYNAMIC_COLOR_OFF;
+Fl_Dynamic_Color Fl::dynamic_color_ = FL_DYNAMIC_COLOR_AUTO;
 #endif // !FL_DOXYGEN
 
 void Fl::dynamic_color(Fl_Dynamic_Color mode)

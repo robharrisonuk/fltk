@@ -136,9 +136,10 @@ private:
   static int draw_GL_text_with_textures_;
   static int box_shadow_width_;
   static int box_border_radius_max_;
-  static Fl_Dynamic_Color dynamic_color_;
 
 public:
+
+  static Fl_Dynamic_Color dynamic_color_;
 
   static Fl_Screen_Driver *screen_driver();
   static Fl_System_Driver *system_driver();

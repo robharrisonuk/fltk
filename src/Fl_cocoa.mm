@@ -523,6 +523,7 @@ void Fl_Cocoa_Screen_Driver::breakMacEventLoop()
 - (BOOL)process_keydown:(NSEvent*)theEvent;
 - (id)initWithFrame:(NSRect)frameRect;
 - (void)drawRect:(NSRect)rect;
+- (void)layout;
 - (BOOL)acceptsFirstResponder;
 - (BOOL)acceptsFirstMouse:(NSEvent*)theEvent;
 - (void)resetCursorRects;
@@ -2278,6 +2279,24 @@ static FLTextInputContext* fltextinputcontext_instance = nil;
   through_drawRect = NO;
   fl_unlock_function();
 }
+
+- (void)layout
+{
+  // Check to see whether the system appearance has changed...
+  if (Fl::dynamic_color_ == FL_DYNAMIC_COLOR_AUTO) {
+    Fl_Darwin_System_Driver *s = (Fl_Darwin_System_Driver *)Fl::system_driver();
+    NSLog(@"appearance=%@", NSApp.appearance);
+    Fl_Dynamic_Color mode = [NSApp.appearance.name isEqualTo:NSAppearanceNameAqua] ? FL_DYNAMIC_COLOR_LIGHT : FL_DYNAMIC_COLOR_DARK;
+    printf("New mode=%d\n", mode);
+    if (s->dynamic_color() != mode) {
+      s->dynamic_color(mode);
+      Fl::get_system_colors();
+    }
+  }
+
+  [super layout];
+}
+
 
 - (BOOL)acceptsFirstResponder
 {

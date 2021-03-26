@@ -40,6 +40,8 @@
 
 class Fl_Darwin_System_Driver : public Fl_Posix_System_Driver
 {
+  Fl_Dynamic_Color dynamic_color_;
+
 public:
   Fl_Darwin_System_Driver();
   virtual int single_arg(const char *arg);
@@ -85,6 +87,7 @@ public:
   virtual const char *control_name();
   virtual Fl_Sys_Menu_Bar_Driver *sys_menu_bar_driver();
   virtual Fl_Dynamic_Color dynamic_color();
+  void dynamic_color(Fl_Dynamic_Color mode) { dynamic_color_ = mode; }
 };
 
 #endif // FL_DARWIN_SYSTEM_DRIVER_H
