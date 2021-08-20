@@ -63,6 +63,7 @@ if (MSVC)
   target_compile_options (fltk_jpeg PRIVATE ${msvc_warnings})
 endif (MSVC)
 
+
 #######################################################################
 # Build the shared library (optional)
 #######################################################################
@@ -73,7 +74,9 @@ if (OPTION_BUILD_SHARED_LIBS)
 
   if (MSVC)
     target_compile_options (fltk_jpeg_SHARED PRIVATE ${msvc_warnings})
-  endif (MSVC)
+  else()
+    target_compile_options(fltk_jpeg PRIVATE -fPIC)
+  endif()
 
 endif (OPTION_BUILD_SHARED_LIBS)
 
